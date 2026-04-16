@@ -17,6 +17,23 @@ The tool performs **log parsing, event correlation, risk scoring, and alert gene
 
 ---
 
+## Real-World SOC Scenario
+
+This project simulates a real-world credential attack scenario where:
+
+- An attacker performs brute force attempts against authentication services  
+- Multiple usernames are targeted (password spraying)  
+- A successful login occurs after repeated failures  
+- The system detects and flags a potential account compromise  
+
+This reflects **real SOC incidents seen in enterprise environments**, such as:
+
+- Ransomware initial access  
+- Credential stuffing attacks  
+- Unauthorized remote access attempts
+
+---
+
 ## Objectives
 
 - Detect authentication-based attacks  
@@ -190,6 +207,19 @@ This project demonstrates how **Python can be used to build a SOC-level detectio
 - Risk-based alerting  
 - Attack detection and prioritization  
 - Security automation  
+
+---
+
+## SOC Analyst Value
+
+This project demonstrates:
+
+- Ability to build detection logic from raw logs  
+- Understanding of attacker behavior (TTPs)  
+- Experience with alert prioritization and triage  
+- Practical implementation of SOC workflows  
+
+This aligns with responsibilities of a Tier 1 / Tier 2 SOC Analyst role.
 
 ---
 
