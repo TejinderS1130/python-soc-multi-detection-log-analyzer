@@ -47,11 +47,11 @@ This allows detection of multi-stage attacks.
 
 ## Risk Scoring Model
 
-| Detection Type | Score |
-|---------------|------|
-| Brute Force | 40 |
-| Password Spraying | 30 |
-| Account Compromise | 50 |
+| Detection Type            | Risk Score | Description                          |
+|--------------------------|-----------|--------------------------------------|
+| Brute Force              | 40        | High volume of failed login attempts |
+| Password Spraying        | 30        | Multiple users targeted from one IP  |
+| Account Compromise       | 50        | Successful login after brute force   |
 
 ---
 
