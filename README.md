@@ -1,4 +1,4 @@
-# SOC Multi-Attack Log Analyzer (Python)
+#  SOC Multi-Attack Log Analyzer (Python)
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.11-blue?style=for-the-badge&logo=python"/>
@@ -9,7 +9,7 @@
 
 ---
 
-## Overview
+##  Overview
 
 This project simulates a **SOC automation tool** that analyzes authentication logs to detect **multiple attack patterns**.
 
@@ -17,7 +17,7 @@ The tool performs **log parsing, event correlation, risk scoring, and alert gene
 
 ---
 
-## Real-World SOC Scenario
+##  Real-World SOC Scenario
 
 This project simulates a real-world credential attack scenario where:
 
@@ -30,11 +30,11 @@ This reflects **real SOC incidents seen in enterprise environments**, such as:
 
 - Ransomware initial access  
 - Credential stuffing attacks  
-- Unauthorized remote access attempts
+- Unauthorized remote access attempts  
 
 ---
 
-## Objectives
+##  Objectives
 
 - Detect authentication-based attacks  
 - Correlate failed and successful login activity  
@@ -43,7 +43,7 @@ This reflects **real SOC incidents seen in enterprise environments**, such as:
 
 ---
 
-## Supported Attack Detections
+##  Supported Attack Detections
 
 - Brute Force Attack  
 - Password Spraying  
@@ -52,7 +52,7 @@ This reflects **real SOC incidents seen in enterprise environments**, such as:
 
 ---
 
-## Advanced Detection Features (SOC Level 2)
+##  Advanced Detection Features (SOC Level 2)
 
 - Time-based detection logic  
 - Risk scoring for prioritization  
@@ -62,7 +62,7 @@ This reflects **real SOC incidents seen in enterprise environments**, such as:
 
 ---
 
-## Detection Logic
+##  Detection Logic
 
 - Detects **"Failed password"** events  
 - Extracts **source IP addresses and usernames**  
@@ -72,7 +72,7 @@ This reflects **real SOC incidents seen in enterprise environments**, such as:
 
 ---
 
-## Detection Logic Breakdown
+##  Detection Logic Breakdown
 
 ### 1. Brute Force Detection
 - Tracks failed login attempts per IP  
@@ -95,7 +95,51 @@ This reflects **real SOC incidents seen in enterprise environments**, such as:
 
 ---
 
-## How It Works
+##  Risk Scoring Model (SIEM-Style)
+
+This system uses a risk-based scoring model to prioritize alerts.
+
+###  Scoring Table
+
+| Detection Type            | Risk Score | Description                          |
+|--------------------------|-----------|--------------------------------------|
+| Brute Force              | 40        | High volume of failed login attempts |
+| Password Spraying        | 30        | Multiple users targeted from one IP  |
+| Account Compromise       | 50        | Successful login after brute force   |
+
+---
+
+###  Correlation Logic
+
+Multiple detections increase the total risk score:
+
+| Scenario | Score | Interpretation |
+|--------|------|----------------|
+| Brute Force only | 40 | Suspicious activity |
+| Password Spraying only | 30 | Reconnaissance |
+| Brute Force + Success | 90 |  High likelihood of compromise |
+| All combined | 120 |  Critical incident |
+
+---
+
+###  Severity Mapping
+
+| Risk Score | Severity |
+|-----------|---------|
+| ≥ 80      | CRITICAL |
+| ≥ 50      | HIGH     |
+| ≥ 30      | MEDIUM   |
+| < 30      | LOW      |
+
+---
+
+###  SOC Insight
+
+Correlation of multiple weak signals significantly increases detection confidence and reduces false positives.
+
+---
+
+##  How It Works
 
 1. Log file is ingested  
 2. Failed login attempts are extracted  
@@ -106,14 +150,15 @@ This reflects **real SOC incidents seen in enterprise environments**, such as:
 
 ---
 
-## Detection Output Example
+##  Detection Output Example
 
-- [ALERT] Brute Force Attack from 192.168.1.50 (5 attempts)
-- [CRITICAL] Account Compromise Detected from 192.168.1.50
+[ALERT] Brute Force Attack from 192.168.1.50 (5 attempts)
+[CRITICAL] Account Compromise Detected from 192.168.1.50
+
 
 ---
 
-## Project Demonstration
+##  Project Demonstration
 
 ### Script Execution
 <img src="screenshots/01-script-running.png" width="800"/>
@@ -135,12 +180,12 @@ This reflects **real SOC incidents seen in enterprise environments**, such as:
 
 ---
 
-### JSON Alert Output
+### JSON Alert Output (SOC Level 2)
 <img src="screenshots/05-json-alerts.png" width="800"/>
 
 ---
 
-## SOC Workflow Simulation
+##  SOC Workflow Simulation
 
 Detection → Alert → Investigation → Response  
 
@@ -153,53 +198,7 @@ Detection → Alert → Investigation → Response
 
 ---
 
-## Tools & Skills
-
-- Python (Log Analysis & Automation)  
-- Regex (Pattern Detection)  
-- SOC Detection Engineering  
-- Threat Detection & Correlation  
-- Incident Analysis  
-- MITRE ATT&CK Mapping  
-
----
-
-## False Positives Consideration
-
-- Administrative login attempts  
-- Security testing activity  
-- Misconfigured services  
-
----
-
-## Detection Improvements (Future Enhancements)
-
-- Time-window correlation (real SIEM logic)  
-- GeoIP enrichment  
-- SIEM integration (Splunk / Sentinel)  
-- Real-time alerting (Slack / Email)  
-
----
-
-## MITRE ATT&CK Mapping
-
-| Technique | ID |
-|----------|----|
-| Brute Force | T1110 |
-| Valid Accounts | T1078 |
-| Credential Access | T1003 |
-
----
-
-## Detection Scenario
-
-1. Attacker performs brute force attempts  
-2. Gains access using valid credentials  
-3. System detects compromise using correlation logic  
-
----
-
-## Detection Engine
+##  Detection Engine
 
 Core detection logic is implemented in:
 
@@ -214,11 +213,57 @@ This includes:
 - Multi-attack detection logic  
 - Risk scoring model  
 - Severity classification  
-- SOC-style correlation rules
+- SOC-style correlation rules  
 
 ---
 
-## SOC Analyst Summary
+##  Tools & Skills
+
+- Python (Log Analysis & Automation)  
+- Regex (Pattern Detection)  
+- SOC Detection Engineering  
+- Threat Detection & Correlation  
+- Incident Analysis  
+- MITRE ATT&CK Mapping  
+
+---
+
+##  False Positives Consideration
+
+- Administrative login attempts  
+- Security testing activity  
+- Misconfigured services  
+
+---
+
+##  Detection Improvements (Future Enhancements)
+
+- Time-window correlation (real SIEM logic)  
+- GeoIP enrichment  
+- SIEM integration (Splunk / Sentinel)  
+- Real-time alerting (Slack / Email)  
+
+---
+
+##  MITRE ATT&CK Mapping
+
+| Technique | ID |
+|----------|----|
+| Brute Force | T1110 |
+| Valid Accounts | T1078 |
+| Credential Access | T1003 |
+
+---
+
+##  Detection Scenario
+
+1. Attacker performs brute force attempts  
+2. Gains access using valid credentials  
+3. System detects compromise using correlation logic  
+
+---
+
+##  SOC Analyst Summary
 
 This project demonstrates how **Python can be used to build a SOC-level detection engine**, capable of:
 
@@ -229,7 +274,7 @@ This project demonstrates how **Python can be used to build a SOC-level detectio
 
 ---
 
-## SOC Analyst Value
+##  SOC Analyst Value
 
 This project demonstrates:
 
