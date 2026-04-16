@@ -199,6 +199,25 @@ Detection → Alert → Investigation → Response
 
 ---
 
+## Detection Engine
+
+Core detection logic is implemented in:
+
+👉 `scripts/soc-detection-engine.py`
+
+Additional documentation:
+
+👉 `docs/detection-logic.md`
+
+This includes:
+
+- Multi-attack detection logic  
+- Risk scoring model  
+- Severity classification  
+- SOC-style correlation rules
+
+---
+
 ## SOC Analyst Summary
 
 This project demonstrates how **Python can be used to build a SOC-level detection engine**, capable of:
