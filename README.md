@@ -63,9 +63,6 @@ The tool parses log data, correlates events, and generates alerts for suspicious
 
 ---
 
-
----
-
 ## Project Demonstration
 
 ### Script Execution
