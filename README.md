@@ -118,7 +118,7 @@ The tool performs **log parsing, event correlation, risk scoring, and alert gene
 
 ---
 
-### JSON Alert Output (SOC Level 2)
+### JSON Alert Output
 <img src="screenshots/05-json-alerts.png" width="800"/>
 
 ---
