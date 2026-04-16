@@ -13,16 +13,16 @@
 
 This project simulates a **SOC automation tool** that analyzes authentication logs to detect **multiple attack patterns**.
 
-The tool parses log data, correlates events, and generates alerts for suspicious activity such as brute force attacks, password spraying, and potential account compromise.
+The tool performs **log parsing, event correlation, risk scoring, and alert generation**, similar to how SIEM platforms operate in real-world SOC environments.
 
 ---
 
 ## Objectives
 
-- Detect multiple authentication-based attacks  
-- Simulate SOC detection engineering using Python  
+- Detect authentication-based attacks  
 - Correlate failed and successful login activity  
-- Automate alert generation for incident response  
+- Simulate SOC detection engineering  
+- Generate prioritized alerts for incident response  
 
 ---
 
@@ -32,6 +32,16 @@ The tool parses log data, correlates events, and generates alerts for suspicious
 - Password Spraying  
 - Successful Login After Failures (**Account Compromise**)  
 - User Enumeration Attempts  
+
+---
+
+## Advanced Detection Features (SOC Level 2)
+
+- Time-based detection logic  
+- Risk scoring for prioritization  
+- Severity classification (Low / Medium / High / Critical)  
+- Multi-event correlation (failures + success)  
+- JSON-based alert output (SIEM-style)  
 
 ---
 
@@ -45,11 +55,34 @@ The tool parses log data, correlates events, and generates alerts for suspicious
 
 ---
 
+## Detection Logic Breakdown
+
+### 1. Brute Force Detection
+- Tracks failed login attempts per IP  
+- Triggers alert when attempts ≥ 5  
+- Identifies automated attack behavior  
+
+### 2. Password Spraying Detection
+- Tracks number of unique users targeted  
+- Flags multiple user attempts from one IP  
+- Indicates credential spraying activity  
+
+### 3. Success After Failure (CRITICAL)
+- Detects successful login after repeated failures  
+- Strong indicator of account compromise  
+- High-priority SOC alert  
+
+### 4. User Enumeration Detection
+- Detects multiple username attempts  
+- Identifies reconnaissance behavior  
+
+---
+
 ## How It Works
 
 1. Log file is ingested  
 2. Failed login attempts are extracted  
-3. Usernames and IPs are correlated  
+3. IPs and usernames are correlated  
 4. Successful logins are tracked  
 5. Detection rules are applied  
 6. Alerts are generated and stored  
@@ -59,57 +92,75 @@ The tool parses log data, correlates events, and generates alerts for suspicious
 ## Detection Output Example
 
 - [ALERT] Brute Force Attack from 192.168.1.50 (5 attempts)
-- [CRITICAL] Account Compromise Detected from 192.168.1.50 (successful login after brute force)
+- [CRITICAL] Account Compromise Detected from 192.168.1.50
 
 ---
 
 ## Project Demonstration
 
 ### Script Execution
-<img src="./screenshots/01-script-running.png" width="800"/>
+<img src="screenshots/01-script-running.png" width="800"/>
 
 ---
 
 ### Detection Results
-<img src="./screenshots/02-alert-detection.png" width="800"/>
+<img src="screenshots/02-alert-detection.png" width="800"/>
 
 ---
 
 ### Alerts Output File
-<img src="./screenshots/03-alerts-file.png" width="800"/>
+<img src="screenshots/03-alerts-file.png" width="800"/>
 
 ---
 
 ### Sample Log File
-<img src="./screenshots/04-log-file.png" width="800"/>
+<img src="screenshots/04-log-file.png" width="800"/>
 
 ---
 
-## SOC Use Case
+### JSON Alert Output (SOC Level 2)
+<img src="screenshots/05-json-alerts.png" width="800"/>
 
-This tool simulates how SOC analysts:
+---
 
-- Detect brute force and password spraying attacks  
-- Correlate authentication events across systems  
-- Identify potential account compromise  
-- Automate detection workflows for faster response  
+## SOC Workflow Simulation
+
+Detection → Alert → Investigation → Response  
+
+1. Logs ingested  
+2. Detection rules triggered  
+3. Alerts generated and prioritized  
+4. Analyst investigates suspicious activity  
+5. Potential compromise identified  
+6. Incident escalated  
+
+---
+
+## Tools & Skills
+
+- Python (Log Analysis & Automation)  
+- Regex (Pattern Detection)  
+- SOC Detection Engineering  
+- Threat Detection & Correlation  
+- Incident Analysis  
+- MITRE ATT&CK Mapping  
 
 ---
 
 ## False Positives Consideration
 
-- IT administrators performing multiple login attempts  
-- Security testing or lab-based simulation  
-- Misconfigured services retrying authentication  
+- Administrative login attempts  
+- Security testing activity  
+- Misconfigured services  
 
 ---
 
 ## Detection Improvements (Future Enhancements)
 
-- Time-based correlation (e.g., 5 attempts within 1 minute)  
-- GeoIP analysis for attacker location  
-- Integration with SIEM platforms (Splunk / Sentinel)  
-- Real-time alerting via email or Slack  
+- Time-window correlation (real SIEM logic)  
+- GeoIP enrichment  
+- SIEM integration (Splunk / Sentinel)  
+- Real-time alerting (Slack / Email)  
 
 ---
 
@@ -119,32 +170,26 @@ This tool simulates how SOC analysts:
 |----------|----|
 | Brute Force | T1110 |
 | Valid Accounts | T1078 |
-| Credential Dumping | T1003 |
+| Credential Access | T1003 |
 
 ---
 
 ## Detection Scenario
 
-This project simulates a real-world attack where:
-
-1. An attacker performs brute force attempts  
-2. Eventually gains access using valid credentials  
-3. The system detects and flags a potential account compromise  
-
-This demonstrates **SOC-level correlation between failed and successful authentication events**.
+1. Attacker performs brute force attempts  
+2. Gains access using valid credentials  
+3. System detects compromise using correlation logic  
 
 ---
 
 ## SOC Analyst Summary
 
-This project demonstrates how **Python can be used to build a multi-detection SOC tool**, capable of identifying and correlating authentication-based attacks.
+This project demonstrates how **Python can be used to build a SOC-level detection engine**, capable of:
 
-It highlights:
-
-- Detection engineering fundamentals  
-- Log analysis and event correlation  
-- Alert generation and prioritization  
-- Security automation in SOC environments  
+- Multi-event correlation  
+- Risk-based alerting  
+- Attack detection and prioritization  
+- Security automation  
 
 ---
 
